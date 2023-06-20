@@ -1,4 +1,4 @@
-# ZMOK Global Tx Pool - Sample Project
+# ZMOK Global Mempool - Sample Project
 
 ## Introduction
 This project demonstrates the use of ZMOK's `zmk_txpool_tx_subscribe` and `zmk_txpool_query` methods to track and display all pending transactions for a sample NFT minting contract. The project uses React for the frontend and Parcel for bundling the application.
