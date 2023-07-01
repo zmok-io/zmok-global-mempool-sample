@@ -42,8 +42,9 @@ function TableComponent() {
         const initialQuery = { "jsonrpc": "2.0", "id": 2, "method": "zmk_txpool_query", "params": [`('to' = '${address}')`] }
         
         // XXX replace with your ZMOK endpoint
-        // const client = new W3CWebSocket("wss://api.zmok.io/mainnet/YOUR_APP_ID")
-        const client = new W3CWebSocket("ws://127.0.0.1:8080/ws")
+        const client = new W3CWebSocket("wss://api.zmok.io/mainnet/YOUR_APP_ID")
+        // const client = new W3CWebSocket("ws://127.0.0.1:8080/ws")
+        
 
         client.onopen = (event) => {
             client.send(JSON.stringify(initialQuery))
@@ -63,10 +64,10 @@ function TableComponent() {
                         }
                         setTransactions(prevTransactions => {
                             if (prevTransactions.find(tx => tx.hash === newTransaction.hash)) {
-                                console.log(`Transaction ${newTransaction.hash} already exists.`);
+                                console.log(`[${new Date().toISOString()}] Transaction ${newTransaction.hash} already exists.`);
                                 return prevTransactions;
                             } else {
-                                console.log(`Adding transaction ${newTransaction.hash}.`);
+                                console.log(`[${new Date().toISOString()}] Adding transaction ${newTransaction.hash}.`);
                                 return [...prevTransactions, newTransaction];
                             }
                         });
@@ -82,7 +83,7 @@ function TableComponent() {
                     if (removedTransactions.hasOwnProperty(hash)) {
                         const hashToRemove = hash;
                         setTransactions(prevTransactions => {
-                            console.log(`Removing transaction ${hashToRemove}.`);
+                            console.log(`[${new Date().toISOString()}] Removing transaction ${hashToRemove}.`);
                             return prevTransactions.filter(tx => tx.hash !== hashToRemove);
                         });
                     }
