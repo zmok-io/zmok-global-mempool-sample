@@ -70,9 +70,10 @@ function TableComponent() {
                                 return [...prevTransactions, newTransaction];
                             }
                         });
-                        setLoading(false);
+                        
                     }
-                }                
+                } 
+                setLoading(false);               
             }
 
             if (json.result && json.result.removed) {
